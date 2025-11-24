@@ -18,11 +18,8 @@ contains
     call_julienne_assert(x_max .greaterThan. x_min)
     call_julienne_assert(cells .isAtLeast. 2*order)
 
-    scalar_1D%x_min_ = x_min
-    scalar_1D%x_max_ = x_max
-    scalar_1D%cells_ = cells
+    scalar_1D%tensor_1D_t = tensor_1D_t(initializer(scalar_1D%cell_centers_extended()), x_min, x_max, cells, order)
     scalar_1D%gradient_operator_1D_ = gradient_operator_1D_t(k=order, dx=(x_max - x_min)/cells, cells=cells)
-    scalar_1D%values_ = initializer(scalar_1D%cell_centers_extended())
   end function
 
   module procedure grad
